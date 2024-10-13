@@ -1,0 +1,34 @@
+/* Keyframes for the color change animation */
+@keyframes colorChange {
+  0% {
+    color: #ff0000;
+    /* Red */
+  }
+
+  25% {
+    color: #00ff00;
+    /* Green */
+  }
+
+  50% {
+    color: #0000ff;
+    /* Blue */
+  }
+
+  75% {
+    color: #ff00ff;
+    /* Pink */
+  }
+
+  100% {
+    color: #ff0000;
+    /* Red again to loop */
+  }
+}
+
+/* Applying the animation to the text */
+.color-change {
+  animation: colorChange 8s infinite;
+  /* Change color every 2 seconds */
+  transition: color 2s;
+}
