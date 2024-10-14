@@ -31,7 +31,7 @@ const Navbar = () => {
         {/* Middle - WhatsApp Icon */}
         <div className="flex justify-center flex-1">
           <a
-            href="https://wa.me/8755465950" // Add your WhatsApp number here
+            href="https://wa.me/9520243089?text=Hii%20I%20am%20interested%20I%20want%20to%20know%20about%20it%20more%20kindly%20help%20me"
             className="text-green-500 flex items-center"
             target="_blank"
             rel="noopener noreferrer"
@@ -43,12 +43,9 @@ const Navbar = () => {
         {/* Right Side - Links for Desktop */}
         <div className="hidden md:flex space-x-6 items-center">
           <NavLink to="/vishwam" className="nav_items flex items-center" onClick={handleLinkClick}>
-            <img
-              src="/assets/hero/vishwam1.png"
-              alt="Vishwam"
-              className="h-16 w-auto transition-transform duration-500 ease-in-out transform hover:scale-125 object-contain"
-              style={{ imageRendering: "auto" }} // Ensure the image is rendered clearly
-            />
+            <div className="h-16 w-16 rounded-full overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-125">
+              <video src="/assets/vishwamitem/vishwamlogo.mp4" autoPlay loop muted className="h-full w-full object-cover"></video>
+            </div>
           </NavLink>
         </div>
 
@@ -56,7 +53,7 @@ const Navbar = () => {
         <div className="md:hidden flex items-center">
           <button
             onClick={toggleMenu}
-            className="text-black focus:outline-none"
+            className="text-white focus:outline-none"
             aria-expanded={isOpen} // Accessibility improvement
           >
             <FaBars className="w-6 h-6" />
@@ -73,11 +70,13 @@ const Navbar = () => {
           </Link> */}
           {/* Add the Vishwam image in the mobile menu */}
           <NavLink to="/vishwam" className="flex items-center py-2" onClick={handleLinkClick}>
-            <img
-              src="/assets/hero/vishwam1.png"
+            <video
+              src="/assets/vishwamitem/vishwamlogo.mp4"
               alt="Vishwam"
               className="h-16 w-auto transition-transform duration-500 ease-in-out transform hover:scale-125 object-contain"
-              style={{ imageRendering: "auto" }} // Ensure the image is rendered clearly
+              autoPlay
+              loop
+              muted
             />
           </NavLink>
         </div>

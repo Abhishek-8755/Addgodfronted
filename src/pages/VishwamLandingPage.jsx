@@ -3,14 +3,16 @@ import "../style.css"; // Ensure your custom styles are imported
 
 const VishwamLandingPage = () => {
   const images = [
-    "/assets/hero/vishwam1.png",
-    "/assets/hero/adgod.jpg",
-    "/assets/hero/hero.avif", // Add as many images as you want
+    "/assets/vishwamitem/vishwamlogo.mp4",
+    "/assets/vishwamitem/2.png",
+    "/assets/vishwamitem/vishwam define.jpg", // Add as many images as you want
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showLines, setShowLines] = useState([false, false, false, false]);
   const [offerClaimed, setOfferClaimed] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [isCouponValid, setIsCouponValid] = useState(false);
 
   // Automatically change the slide every 3 seconds
   useEffect(() => {
@@ -59,16 +61,31 @@ const VishwamLandingPage = () => {
     setOfferClaimed(false);
   };
 
+  // Function to validate coupon code
+  const handleCouponSubmit = () => {
+    // Example validation; you can replace it with your own logic
+    if (couponCode === "FREEMONTH") {
+      setIsCouponValid(true);
+      alert("Coupon applied successfully!");
+    } else {
+      alert("Invalid coupon code. Please try again.");
+    }
+  };
+
   return (
     <div className="relative flex flex-col justify-center items-center bg-cover bg-center p-6">
       {/* Hurry Up Limited Offer Banner */}
       <div className="bg-red-500 text-white text-xl font-bold py-2 px-4 rounded mb-4 text-center text-3d-banner">Hurry Up! Special offer Limited</div>
 
       <div className="flex flex-col lg:flex-row justify-center items-stretch w-full h-auto lg:h-[500px]">
-        {/* Left Section: Image Slider */}
-        <div className="w-full lg:w-1/2 pr-6 h-[300px] lg:h-[500px] flex items-center mb-6 lg:mb-0">
+        {/* Left Section: Image/Video Slider */}
+        <div className="w-full lg:w-1/2 pr-6 h-full flex items-center mb-6 lg:mb-0">
           <div className="relative w-full h-full">
-            <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} className="w-full h-full object-cover rounded" />
+            {images[currentSlide].endsWith(".mp4") ? (
+              <video src={images[currentSlide]} className="w-full h-full object-cover rounded" autoPlay loop muted />
+            ) : (
+              <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} className="w-full h-full object-cover rounded" />
+            )}
 
             {/* Previous Button */}
             <button
@@ -111,12 +128,32 @@ const VishwamLandingPage = () => {
           </div>
 
           {/* Special Offer Section */}
-          <div className="bg-yellow-500 text-black p-6 rounded-lg ml-4 mt-8 lg:mt-0 lg:ml-8 w-full lg:w-1/3 shadow-lg text-center flex flex-col justify-center items-center">
+          <div className="bg-yellow-500 text-black p-8 rounded-lg ml-4 mt-8 lg:mt-0 lg:ml-8 w-full lg:w-1/3 shadow-lg text-center flex flex-col justify-center items-center">
             <h2 className="text-xl lg:text-2xl font-bold mb-4">Special Offer!</h2>
             <p className="mb-4">Get a free content writing!</p>
+
+            {/* Coupon Code Input */}
+            <div className="mb-4 flex flex-col items-center w-full">
+              <input
+                type="text"
+                placeholder="Enter Coupon Code"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                className="border border-gray-400 rounded px-3 py-2 w-2/3 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                onClick={handleCouponSubmit}
+                className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+              >
+                Apply
+              </button>
+            </div>
+
             <button className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 transition duration-300" onClick={handleClaimOffer}>
               Claim Offer
             </button>
+
+            {isCouponValid && <p className="text-green-600 mt-2">Coupon successfully applied! You got free content writing</p>}
           </div>
         </div>
       </div>

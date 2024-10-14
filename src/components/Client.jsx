@@ -26,7 +26,7 @@ const Client = () => {
     {
       id: 1,
       title: "Pradeep singh",
-      img: "https://cdn.pixabay.com/video/2022/08/04/126731-736705776_large.mp4", // Video
+      img: "/videos/review1.mp4", // Video
     },
     {
       id: 2,

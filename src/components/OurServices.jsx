@@ -44,9 +44,7 @@ const OurServices = () => {
 
   return (
     <div className="container my-1" id="projects">
-      <h1 className="text-center mb-4 text-4xl text-white p-4 rounded-lg" data-aos="fade-up" data-aos-duration="1000">
-        Our Services
-      </h1>
+      <h1 className="text-center my-5 text-3xl md:text-4xl font-bold">Our Services</h1>
 
       <div className="row gy-4 gx-2 justify-content-center">
         {" "}

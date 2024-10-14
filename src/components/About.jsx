@@ -8,28 +8,28 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-5">
-      <h1 className="text-4xl font-bold text-center my-5" data-aos="fade-up">
+    <div className="container mx-auto p-5 sm:p-3 lg:p-10 overflow-x-hidden">
+      <h1 className="text-4xl sm:text-3xl lg:text-5xl font-bold text-center my-5" data-aos="fade-up">
         About Us
       </h1>
-      <p className="text-lg mb-5" data-aos="fade-right">
+      <p className="text-lg sm:text-base lg:text-xl text-justify mb-5" data-aos="fade-right">
         Welcome to ADD-GOD! We help small and large businesses connect to the digital world. Our goal is to make it easy for everyone to run their
         business online. We blend the values of Indian culture with modern technology, creating a unique path for growth and success.
       </p>
 
-      <h2 className="text-2xl font-semibold my-3" data-aos="fade-up">
+      <h2 className="text-2xl sm:text-xl lg:text-3xl font-semibold my-3" data-aos="fade-up">
         Our Mission
       </h2>
-      <p className="mb-5" data-aos="fade-left">
+      <p className="mb-5 text-justify" data-aos="fade-left">
         At ADD-GOD, our mission is simple: we want to see every business in India succeed online. We are dedicated to providing the support and
         resources needed to help all entrepreneurs succeed in the digital age. We believe that by combining tradition with innovation, we can create a
         better future for everyone.
       </p>
 
-      <h2 className="text-2xl font-semibold my-3" data-aos="fade-up">
+      <h2 className="text-2xl sm:text-xl lg:text-3xl font-semibold my-3" data-aos="fade-up">
         Why Choose Us?
       </h2>
-      <ul className="list-disc list-inside mb-5" data-aos="zoom-in">
+      <ul className="list-disc list-inside mb-5 text-sm sm:text-base lg:text-lg" data-aos="zoom-in">
         <li>
           Cultural Integration with Technology We blend Indian culture with cutting-edge technology, creating personalized solutions that resonate
           with your business identity.
@@ -59,19 +59,19 @@ const AboutUs = () => {
         </li>
       </ul>
 
-      <h2 className="text-2xl font-semibold my-3" data-aos="fade-up">
+      <h2 className="text-2xl sm:text-xl lg:text-3xl font-semibold my-3" data-aos="fade-up">
         Our Journey
       </h2>
-      <p className="mb-5" data-aos="fade-right">
+      <p className="mb-5 text-justify text-sm sm:text-base lg:text-lg" data-aos="fade-right">
         Since we started, ADD-GOD has helped over 100,000 business owners around the world go digital. We are proud of what we’ve achieved, and we
         dream of a future where millions of businesses can thrive online. Our journey is all about helping businesses turn their offline success into
         online growth.
       </p>
 
-      <h2 className="text-2xl font-semibold my-3" data-aos="fade-up">
+      <h2 className="text-2xl sm:text-xl lg:text-3xl font-semibold my-3" data-aos="fade-up">
         Join Us
       </h2>
-      <p data-aos="fade-left">
+      <p className="text-justify text-sm sm:text-base lg:text-lg" data-aos="fade-left">
         When you join ADD-GOD, you become part of a team that values culture and embraces technology. We offer personalized support and solutions to
         meet your business needs. By partnering with us, you gain the knowledge and tools to transform your business online. Let’s work together to
         unlock your business’s full potential in the digital world!
