@@ -1,0 +1,40 @@
+/* Client.css */
+
+.name-slider .slider-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    /* Adjust height as needed */
+    background-color: #000;
+    /* Background color for slider */
+    border: 2px solid #ffcc00;
+    /* Border color */
+    border-radius: 8px;
+    /* Rounded corners */
+}
+
+.name-slider .marquee {
+    display: flex;
+    animation: marquee 10s linear infinite;
+}
+
+.name-slider .name-item {
+    flex: none;
+    padding: 0 20px;
+    /* Spacing between items */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

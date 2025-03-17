@@ -21,189 +21,70 @@ a {
 
 /* Navbar Section */
 
-.nav_bar {
+/* Add these styles to your CSS */
+
+/* Centering the name slider */
+/* CSS file: Client.css */
+.name-slider {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-
-}
-
-.nav_bar .nav_items {
-  padding: 16px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.nav_bar .nav_items:hover {
-  border-bottom: 3px solid yellow;
-}
-
-
-/* Home Section */
-
-.home {
-  height: 80vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.home .left {
-  background-color: var(--bg-color);
-  width: 620px;
-  text-align: center;
-  padding: 30px;
+  overflow: hidden;
+  width: 100%;
+  padding: 1rem 0;
   border-radius: 10px;
-  border: 1px solid yellow;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.home .right .img {
+.name-slider .overflow-hidden {
+  width: 100%;
+  overflow: hidden;
+}
+
+.name-slider .animate-slide {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-color: yellow; */
-  /* height: 350px;
-  width: 350px; */
+  animation: slide 20s linear infinite;
 }
 
-.home .right .img img {
-  height: 270px;
-  width: 270px;
-  border: 5px solid yellow;
-  border-radius: 100%;
-  animation-name: superman;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-}
-
-
-@keyframes superman {
+@keyframes slide {
   0% {
-    border-color: blue;
-    transform: translate(0, 0px);
-    box-shadow: 10px 10px 100px 50px blue;
-  }
-
-  25% {
-    border-color: rgb(239, 244, 11);
-    box-shadow: 10px 10px 100px 50px rgb(239, 244, 11);
-  }
-
-  50% {
-    border-color: rgb(12, 12, 199);
-    transform: translate(0, 10px);
-    box-shadow: 10px 10px 100px 50px rgb(12, 12, 199);
-  }
-
-  75% {
-    border-color: rgb(130, 217, 160);
-    box-shadow: 10px 10px 100px 50px rgb(130, 217, 160);
+    transform: translateX(0);
   }
 
   100% {
-    border-color: rgb(50, 55, 205);
-    transform: translate(0, -0px);
-    box-shadow: 10px 10px 100px 50px rgb(50, 55, 205);
+    transform: translateX(-100%);
   }
 }
 
-/* Experience Section */
-
-.ex {
-  width: 900px;
-}
-
-.ex-items {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--bg-color);
-  margin: 20px;
-  padding: 30px;
-  width: 800px;
-  border-radius: 10px;
-  border: 1px solid yellow;
-  box-shadow: var(--box-shadow);
-}
-
-/* Skills */
-
-.skills {
-  width: 900px;
-}
-
-.skills .items {
+.name-slider .name-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  /* width: 800px; */
-  margin: auto;
-  /* background-color: yellow; */
+  min-width: 250px; /* Adjust width as needed */
+  margin-right: 2rem;
 }
 
-.skills .items .item {
-  width: calc(33.33%);
-  background-color: black;
-  margin: 20px;
-  text-align: center;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid yellow;
-  box-shadow: var(--box-shadow);
-}
-
-.skills .items .item img {
-  width: 70px;
-}
-
-/* Contact */
-
-.contact-icon {
-  height: 30vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contact-icon .items {
-  background-color: black;
-  margin: 10px;
-  height: 70px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100%;
-  border: 2px solid yellow;
-}
-
-.contact-icon .items:hover {
-  background-color: var(--bg-color);
-  box-shadow: var(--box-shadow);
-}
-
-.contact-icon .items .icons {
+.name-item p {
   font-size: 2rem;
-}
-.multi-colored-shadow {
-  box-shadow:
-    0 0 15px rgba(255, 0, 0, 0.5),
-    /* Red shadow */
-    0 0 20px rgba(0, 255, 0, 0.5),
-    /* Green shadow */
-    0 0 25px rgba(0, 0, 255, 0.5),
-    /* Blue shadow */
-    0 0 30px rgba(255, 255, 0, 0.5);
-  /* Yellow shadow */
-  transition: box-shadow 0.3s ease-in-out;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, rgba(93, 225, 242, 0.889), rgba(255, 255, 255, 0.3));
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.multi-colored-shadow:hover {
-  box-shadow:
-    0 0 25px rgba(255, 0, 0, 0.7),
-    0 0 30px rgba(0, 255, 0, 0.7),
-    0 0 35px rgba(0, 0, 255, 0.7),
-    0 0 40px rgba(255, 255, 0, 0.7);
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .name-item p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .name-item p {
+    font-size: 1.2rem;
+  }
 }

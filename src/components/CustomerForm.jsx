@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-export default function CustomerForm() {
+const CustomerForm = () => {
+  const location = useLocation();
+  const [employeeName, setEmployeeName] = useState("");
   const [formData, setFormData] = useState({
-    customerFullname: "",
-    mobileNumber: "",
+    employeeId: "",
+    customerFullName: "",
     city: "",
     state: "",
-    pincode: "",
+    mobileNumber: "",
+    pinCode: "",
     address: "",
-    paymentMode: "Credit Card", // Default value for payment mode
-    employeeName: "",
-    employeeId: "",
-    paymentScreenshot: null, // For file upload
+    plan: "",
     specificRequirements: "",
+    additionalFeatures: "",
+    transactionId: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState(""); // New state for success message
+  useEffect(() => {
+    if (location.state && location.state.employeeName) {
+      setEmployeeName(location.state.employeeName);
+    }
+  }, [location.state]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,185 +32,151 @@ export default function CustomerForm() {
     });
   };
 
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: files[0], // Store the uploaded file
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    setLoading(true); // Start loading
-    setErrorMessage(""); // Reset error message
-    setSuccessMessage(""); // Reset success message
-
-    const formEle = e.target; // Get form element
-    const formDataObj = new FormData(formEle); // Create FormData from form element
-
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbznw4JzHlxW6YHsCWeHMRwZvC9g3sgjOyfxEC0U0x0mwnRnOhQehwSK0sFiioa3g2nL/exec",
-        {
-          method: "POST",
-          body: formDataObj,
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.text(); // Use .text() to handle plain text response
-      console.log(data);
-
-      // Set the success message
-      setSuccessMessage("Your data has been successfully submitted!");
-
-      setFormData({
-        // Clear form inputs
-        customerFullname: "",
-        mobileNumber: "",
-        city: "",
-        state: "",
-        pincode: "",
-        address: "",
-        paymentMode: "Credit Card",
-        employeeName: "",
-        employeeId: "",
-        paymentScreenshot: null,
-        specificRequirements: "",
-      });
-    } catch (error) {
-      console.error("Error:", error);
-      setErrorMessage("An error occurred while submitting the form. Please try again."); // Set error message
-    } finally {
-      setLoading(false); // Stop loading
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Implement form submission logic here
+    console.log(formData);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-black-800">
-      <h1 className="text-3xl font-bold text-white mb-8">Contact Me Form</h1>
-
-      <div className="bg-black text-black p-10 rounded-lg shadow-lg w-full max-w-xl">
-        <form className="space-y-5" onSubmit={handleSubmit}>
-          {/* Form Fields */}
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="Customer Full Name"
-            name="customerFullname"
-            type="text"
-            value={formData.customerFullname}
-            onChange={handleChange}
-            required
-          />
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="Mobile Number"
-            name="mobileNumber"
-            type="tel"
-            value={formData.mobileNumber}
-            onChange={handleChange}
-            required
-          />
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="City"
-            name="city"
-            type="text"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="State"
-            name="state"
-            type="text"
-            value={formData.state}
-            onChange={handleChange}
-            required
-          />
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="Pincode"
-            name="pincode"
-            type="text"
-            value={formData.pincode}
-            onChange={handleChange}
-            required
-          />
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="Address"
-            name="address"
-            type="text"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-          <select
-            name="paymentMode"
-            value={formData.paymentMode}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-          >
-            <option value="Credit Card">Credit Card</option>
-            <option value="Debit Card">Debit Card</option>
-            <option value="PayPal">PayPal</option>
-            <option value="Bank Transfer">Bank Transfer</option>
-          </select>
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="Employee Name"
-            name="employeeName"
-            type="text"
-            value={formData.employeeName}
-            onChange={handleChange}
-            required
-          />
-          <input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="Employee ID"
-            name="employeeId"
-            type="text"
-            value={formData.employeeId}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="file"
-            name="paymentScreenshot"
-            onChange={handleFileChange} // Handle file input
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required
-          />
-          <textarea
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            placeholder="Specific Requirements"
-            name="specificRequirements"
-            value={formData.specificRequirements}
-            onChange={handleChange}
-          />
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full p-3 text-white font-bold rounded-lg ${
-              loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"
-            } transition-colors duration-300`}
-          >
-            {loading ? "Submitting..." : "Submit"}
-          </button>
-        </form>
-
-        {/* Error and Success Messages */}
-        {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
-        {successMessage && <p className="text-green-500 mt-4">{successMessage}</p>}
-      </div>
+    <div className="max-w-3xl mx-auto p-6 bg-black text-white rounded-lg shadow-md">
+      <h1 className="text-3xl font-semibold text-center mb-6">Welcome {employeeName} to Vishwam</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block font-medium mb-2">Employee ID:</label>
+            <input
+              type="text"
+              name="employeeId"
+              value={formData.employeeId}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block font-medium mb-2">Customer Full Name:</label>
+            <input
+              type="text"
+              name="customerFullName"
+              value={formData.customerFullName}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block font-medium mb-2">City:</label>
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block font-medium mb-2">State:</label>
+            <input
+              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block  font-medium mb-2">Mobile Number:</label>
+            <input
+              type="text"
+              name="mobileNumber"
+              value={formData.mobileNumber}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block  font-medium mb-2">Pin Code:</label>
+            <input
+              type="text"
+              name="pinCode"
+              value={formData.pinCode}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="col-span-2">
+            <label className="block font-medium mb-2">Address:</label>
+            <textarea
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="col-span-2">
+            <label className="block font-medium mb-2">Plan:</label>
+            <select
+              name="plan"
+              value={formData.plan}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select a plan</option>
+              <option value="plan1">Plan 1 - $100</option>
+              <option value="plan2">Plan 2 - $200</option>
+              <option value="plan3">Plan 3 - $300</option>
+              <option value="plan4">Plan 4 - $400</option>
+              <option value="plan5">Plan 5 - $500</option>
+              <option value="plan6">Plan 6 - $600</option>
+            </select>
+          </div>
+          <div className="col-span-2">
+            <label className="block font-medium mb-2">Specific Requirements:</label>
+            <textarea
+              name="specificRequirements"
+              value={formData.specificRequirements}
+              onChange={handleChange}
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="col-span-2">
+            <label className="block  font-medium mb-2">Additional Features:</label>
+            <textarea
+              name="additionalFeatures"
+              value={formData.additionalFeatures}
+              onChange={handleChange}
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="col-span-1">
+            <label className="block  font-medium mb-2">QR Code:</label>
+            <img src="/assets/QR/qr.png" alt="QR Code" className="w-50 h-70 border border-white rounded m-2" />
+          </div>
+          <div>
+            <label className="block  font-medium mb-2">Transaction ID:</label>
+            <input
+              type="text"
+              name="transactionId"
+              value={formData.transactionId}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-200">
+          Submit
+        </button>
+      </form>
     </div>
   );
-}
+};
+
+export default CustomerForm;

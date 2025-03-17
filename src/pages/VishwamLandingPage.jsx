@@ -3,9 +3,9 @@ import "../style.css"; // Ensure your custom styles are imported
 
 const VishwamLandingPage = () => {
   const images = [
-    "/assets/vishwamitem/vishwamlogo.mp4",
-    "/assets/vishwamitem/2.png",
-    "/assets/vishwamitem/vishwam define.jpg", // Add as many images as you want
+    "/assets/vishwamitem/Vishw.mp4",
+    // "/assets/vishwamitem/panc.jpg",
+    // "/assets/vishwamitem/vishwam define.jpg", // Add as many images as you want
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -14,11 +14,11 @@ const VishwamLandingPage = () => {
   const [couponCode, setCouponCode] = useState("");
   const [isCouponValid, setIsCouponValid] = useState(false);
 
-  // Automatically change the slide every 3 seconds
+  // Automatically change the slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide === images.length - 1 ? 0 : prevSlide + 1));
-    }, 3000); // 3000ms = 3 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -35,15 +35,14 @@ const VishwamLandingPage = () => {
 
   // Function to show lines with animation
   useEffect(() => {
-    const timeoutIds = showLines.map(
-      (_, index) =>
-        setTimeout(() => {
-          setShowLines((prev) => {
-            const newLines = [...prev];
-            newLines[index] = true;
-            return newLines;
-          });
-        }, index * 500) // Staggered display every 500ms
+    const timeoutIds = showLines.map((_, index) =>
+      setTimeout(() => {
+        setShowLines((prev) => {
+          const newLines = [...prev];
+          newLines[index] = true;
+          return newLines;
+        });
+      }, index * 500)
     );
 
     return () => {
@@ -63,7 +62,6 @@ const VishwamLandingPage = () => {
 
   // Function to validate coupon code
   const handleCouponSubmit = () => {
-    // Example validation; you can replace it with your own logic
     if (couponCode === "FREEMONTH") {
       setIsCouponValid(true);
       alert("Coupon applied successfully!");
@@ -75,7 +73,9 @@ const VishwamLandingPage = () => {
   return (
     <div className="relative flex flex-col justify-center items-center bg-cover bg-center p-6">
       {/* Hurry Up Limited Offer Banner */}
-      <div className="bg-red-500 text-white text-xl font-bold py-2 px-4 rounded mb-4 text-center text-3d-banner">Hurry Up! Special offer Limited</div>
+      <div className="bg-red-600 text-white text-xl font-bold py-2 px-4 rounded mb-6 text-center text-3d-banner">
+        Hurry Up! Free Google Map Listing
+      </div>
 
       <div className="flex flex-col lg:flex-row justify-center items-stretch w-full h-auto lg:h-[500px]">
         {/* Left Section: Image/Video Slider */}
@@ -110,7 +110,7 @@ const VishwamLandingPage = () => {
           <div className="flex-1">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6">Welcome to Vishwam</h1>
 
-            {["PRODUCT PHOTOSHOOT", "DIGITAL AD CAMPAIGN", "CONNECTION WITH BUSINESS MANIAA", "REACH UP TO 30 PEOPLE"].map((line, index) => (
+            {["PRODUCT PHOTOSHOOT", "DIGITAL AD CAMPAIGN", "CONNECTION WITH BUSINESS MANIAA", "REACH UP TO 30 Customer"].map((line, index) => (
               <p
                 key={index}
                 className={`text-lg md:text-xl lg:text-2xl mb-2 fade-in font-roboto`}
@@ -158,15 +158,57 @@ const VishwamLandingPage = () => {
         </div>
       </div>
 
-      {/* Full-Screen Congratulatory Message */}
+      {/* About Vishwam Section */}
+      <div className="mt-28 text-left w-full max-w-5xl flex flex-col items-center">
+        <h2 className="text-5xl font-bold text-white mb-4 animate-fadeIn">Discover Vishwam Services</h2>
+        <p className="text-3xl text-gray-200 mb-6 animate-fadeIn">
+          Vishwam empowers businesses to grow with tailored marketing solutions. Here are our core services:
+        </p>
+        <ul className="text-xl text-white list-disc mt-4 space-y-2 animate-fadeIn">
+          <li>
+            <strong>Product Photoshoot:</strong> Professional photography to enhance product appeal and attract customer interest.
+          </li>
+          <li>
+            <strong>Digital Ads for Business:</strong> Targeted online advertising to maximize visibility and engagement.
+          </li>
+          <li>
+            <strong>Connect to Business Mania:</strong> Expand your reach by partnering with Business Maniaa for new networking opportunities.
+          </li>{" "}
+          <li>
+            <strong>Google Map Listing:</strong> Expand your reach by partnering with Business Maniaa for new networking opportunities.
+          </li>
+          <li>
+            <strong>Boost Your Presence:</strong> Boost visibility and increase engagement with potential clients across multiple channels REACH UP TO
+            30 Customer.
+          </li>
+        </ul>
+      </div>
+
+      {/* About Section */}
+      <div className="mt-28 text-left w-full max-w-5xl flex flex-col items-center">
+        <h2 className="text-5xl font-bold text-white mb-4 animate-fadeIn">About Vishwam</h2>
+        <p className="text-2xl text-gray-200 mb-6 animate-fadeIn">
+          At Vishwam, we believe in the power of creativity and innovation. Our mission is to provide businesses with exceptional marketing solutions
+          that drive results and foster growth.
+        </p>
+        <p className="text-2xl text-gray-200 mb-4 animate-fadeIn">
+          We specialize in understanding our clients' unique needs and crafting customized strategies that resonate with their target audience. With a
+          focus on quality and excellence, we deliver services that not only meet but exceed expectations.
+        </p>
+        <p className="text-2xl text-gray-200 mb-4 animate-fadeIn">
+          Join us in transforming your business journey and achieving your goals with Vishwam.
+        </p>
+      </div>
+
+      {/* Congratulatory Message */}
       {offerClaimed && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-          <div className="bg-white text-center p-8 rounded-lg shadow-lg max-w-lg">
-            <h1 className="text-3xl font-bold mb-4 text-green-500">🎉 Congratulations! 🎉</h1>
-            <p className="text-lg mb-6 text-black">You have successfully claimed your free content writing offer!</p>
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+            <h3 className="text-2xl font-bold mb-4">Congratulations!</h3>
+            <p className="mb-4">You've claimed the special offer!</p>
             <button
-              className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
               onClick={closeCongratulation}
+              className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
             >
               Close
             </button>

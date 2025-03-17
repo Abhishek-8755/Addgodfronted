@@ -1,229 +1,128 @@
-/* Video Player Container */
+/* Video Container */
 .video-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
 }
 
-/* Circular Video Initial State */
-.circular-video {
-    width: 270px;
-    /* Same as your previous img size */
-    height: 270px;
-    border-radius: 50%;
-    /* Makes the video circular */
-    border: 5px solid yellow;
-    /* Adding border to match previous styling */
-    overflow: hidden;
-    /* Ensures video doesn't overflow */
-    animation-name: superman;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    transition: all 0.5s ease-in-out;
-    /* Smooth transition for hover or expansion */
-    box-shadow: var(--box-shadow);
+.square-video {
+  width: 100%;
+  max-width: 800px;
+  /* Keeps the width responsive */
+  max-height: 400px;
+  /* Maximum height for desktop */
+  position: relative;
+  overflow: hidden;
+  border: 3px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(0, 123, 255, 0.5), 0 0 45px rgba(0, 123, 255, 0.4);
 }
 
-.circular-video video {
+.square-video:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(0, 123, 255, 0.6), 0 0 60px rgba(0, 123, 255, 0.5);
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Ensures full video is shown without cropping */
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 768px) {
+  .square-video {
+    width: 300px;
+    height: 170px;
+    /* Adjust height for mobile */
+  }
+
+  .video-element {
     width: 100%;
-    height: 100%;
+    height: 170px;
+    object-fit: contain;
+  }
+}
+
+/* Home Container */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+/* Slider Container */
+.slider-container {
+  width: 100%;
+  max-width: 1055px;
+  /* Limits the width of the slider on larger screens */
+  position: absolute;
+}
+
+/* Image Container */
+.image-container {
+  width: 100%;
+  height: 100%;
+  /* Let the height adjust dynamically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  /* Make sure image takes full container height */
+  object-fit: contain;
+  /* Ensures full image is shown without cropping */
+  border-radius: 8px;
+}
+
+/* Media Query for Tablets */
+/* Media Query for Tablets */
+@media (max-width: 768px) {
+  .image-container {
+    height: 300px;
+    /* Increase the height for smaller devices */
+    /* Adjust the height for smaller screens to make the image taller */
+  }
+
+  .image-container img {
     object-fit: cover;
-    /* Ensures video fits the circular shape */
-    border-radius: 50%;
-    /* Ensures video remains circular */
-    transition: transform 0.5s, filter 0.5s;
-    /* Smooth hover effect */
-}
-
-/* Hover Effects on Video (only in circular state) */
-.circular-video:hover video {
-    transform: scale(1.1);
-    /* Zoom in slightly on hover */
-    filter: grayscale(0%);
-    /* Remove grayscale filter on hover */
-}
-
-/* Expanded Video State */
-.circular-video.expanded {
-    width: 100%;
-    /* Full width */
-    height: 100vh;
-    /* Full height of the viewport */
-    border-radius: 0;
-    /* Rectangular shape when expanded */
-    position: fixed;
-    top: 0;
-    left: 0;
-    /* Ensure it covers the whole viewport */
-    z-index: 1000;
-    /* Make sure it's on top of other elements */
-    background: black;
-    /* Optional: background color while video is loading */
-}
-
-/* Close Button for Expanded Video */
-#close-button {
-    position: absolute;
-    top: 20px;
-    /* Adjusted for better visibility */
-    right: 30px;
-    /* Adjusted for better visibility */
-    font-size: 18px;
-    color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1001;
-    /* Ensure close button is on top */
-}
-
-/* Watch Button Style */
-.watch-button {
-    margin-top: 10px;
-    font-size: 18px;
-    color: white;
-    background: none;
-    border: none;
-    font-weight: normal;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.3s ease;
-    /* Hover effect */
-}
-
-.watch-button:hover {
-    color: rgba(0, 255, 255, 1);
-    /* Color change on hover */
-    text-decoration: none;
-}
-
-/* Keyframes for Video Border Animation */
-@keyframes superman {
-    0% {
-        border-color: blue;
-        transform: translate(0, 0px);
-        box-shadow: 10px 10px 100px 50px blue;
-    }
-
-    25% {
-        border-color: rgb(239, 244, 11);
-        box-shadow: 10px 10px 100px 50px rgb(239, 244, 11);
-    }
-
-    50% {
-        border-color: rgb(12, 12, 199);
-        transform: translate(0, 10px);
-        box-shadow: 10px 10px 100px 50px rgb(12, 12, 199);
-    }
-
-    75% {
-        border-color: rgb(130, 217, 160);
-        box-shadow: 10px 10px 100px 50px rgb(130, 217, 160);
-    }
-
-    100% {
-        border-color: rgb(50, 55, 205);
-        transform: translate(0, -0px);
-        box-shadow: 10px 10px 100px 50px rgb(50, 55, 205);
-    }
-}
-
-/* Rainbow Animation Keyframes */
-@keyframes rainbow {
-    0% {
-        color: red;
-    }
-
-    14% {
-        color: orange;
-    }
-
-    28% {
-        color: yellow;
-    }
-
-    42% {
-        color: green;
-    }
-
-    57% {
-        color: blue;
-    }
-
-    71% {
-        color: indigo;
-    }
-
-    85% {
-        color: violet;
-    }
-
-    100% {
-        color: red;
-    }
-}
-
-.rainbow-effect {
-    animation: rainbow 1s infinite;
-    /* Adjust duration as needed */
-}
-
-/* Media Query for Mobile Devices */
-@media (max-width: 600px) {
-    .circular-video {
-        width: 135px;
-        /* Reduce size for mobile */
-        height: 135px;
-        /* Reduce size for mobile */
-    }
-
-    #close-button {
-        top: 10px;
-        /* Adjust position for mobile */
-        right: 10px;
-        /* Adjust position for mobile */
-    }
-
-    .watch-button {
-        font-size: 16px;
-        /* Slightly smaller button text */
-    }
-}
-.fade-in {
-    opacity: 0;
-    /* Start with hidden */
-    animation: fadeIn 1s forwards;
-    /* Apply fadeIn animation */
-    animation-delay: 0.3s;
-    /* Delay before animation starts */
-}
-
-.fade-in {
-  opacity: 0; /* Start hidden */
-  animation: fadeIn 1s forwards; /* Apply fadeIn animation */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px); /* Move slightly down */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0); /* Move back to original position */
+    /* Adjusts to cover mode for mobile */
   }
 }
-.text-3d-banner {
-    text-shadow:
-        1px 1px 0 rgba(0, 0, 0, 0.2),
-        /* Light shadow to the right and down */
-        2px 2px 0 rgba(0, 0, 0, 0.2),
-        /* Slightly darker shadow */
-        3px 3px 0 rgba(0, 0, 0, 0.2);
-    /* Dark shadow to create depth */
-    transform: translateZ(0);
-    /* Ensures the 3D effect is applied */
+
+/* Media Query for Small Mobile Screens */
+@media (max-width: 480px) {
+  .image-container {
+    height: 300px;
+    /* Increase the height for small mobile screens */
+    /* Adjust height for mobile screens */
+  }
+
+  .image-container img {
+    object-fit: cover;
+  }
+}
+
+/* Media Query for Smaller Tablets and Larger Mobile Screens */
+@media (max-width: 1200px) {
+  .image-container {
+    height: 350px;
+    /* Increase height on slightly larger screens */
+  }
+
+  .image-container img {
+    object-fit: cover;
+  }
 }

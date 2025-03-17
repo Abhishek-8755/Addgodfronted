@@ -57,35 +57,43 @@ const AvailablePlan = () => {
 
     if (!isAuthenticated) {
       // If the user is not authenticated, redirect to login page
-      navigate("/login"); // Redirect to login page
+      navigate("/employee/login"); // Redirect to login page
     } else {
       // If authenticated, redirect to the customer form
-      navigate("/customerform"); // Adjust the path according to your routing structure
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSdm7w5fltppbPFPN6qU5vnm1uMuFYZ-8WTz1fdv4qXwZYjy9Q/viewform", "_blank"); // Adjust the path according to your routing structure
     }
   };
 
   return (
-    <div className="container mx-auto py-8" id="plans">
-      <h1 className="text-center my-5 text-3xl md:text-4xl font-bold">Available Plans</h1>
+    <div className="container py-8 mx-auto" id="plans">
+      <h1 className="my-5 text-3xl font-bold text-center md:text-4xl">Available Plans</h1>
       <div className="row d-flex justify-content-center align-items-center">
         {plansData.map((plan) => (
-          <div key={plan.id} className="my-4 col-sm-6 col-md-4 col-lg-3 mx-4">
+          <div key={plan.id} className="mx-4 my-4 col-sm-6 col-md-4 col-lg-3">
             <div
-              className="card bg-dark text-light transition-transform transform hover:scale-105 hover:shadow-lg"
+              className="transition-transform transform card bg-dark text-light hover:scale-105 hover:shadow-xl hover:-rotate-1"
               style={{
                 border: "1px solid yellow",
-                boxShadow: "5px 5px 10px rgba(101, 175, 10, 0.5)",
+                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.2)",
+                perspective: "1000px", // Enable 3D effect
+                transformStyle: "preserve-3d",
               }}
               data-aos="zoom-in" // Animation effect on scroll
             >
-              <div className="card-body text-center p-4">
+              <div
+                className="p-4 text-center card-body"
+                style={{
+                  transform: "rotateY(0deg)", // Initialize 3D card rotation
+                  transition: "transform 0.6s",
+                }}
+              >
                 <h2 className="text-xl font-bold">{plan.name}</h2>
                 <p className="text-2xl font-semibold">{plan.price}</p>
                 <p className="text-sm md:text-base">{plan.description}</p>
                 <div>
                   <button
                     onClick={() => handlePurchase(plan.name)}
-                    className="btn btn-primary mx-1 my-3 w-full transition-transform transform hover:scale-105"
+                    className="w-full mx-1 my-3 transition-transform transform btn btn-primary hover:scale-110"
                   >
                     Buy Now
                   </button>

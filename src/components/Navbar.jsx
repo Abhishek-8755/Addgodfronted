@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaHome, FaBars, FaWhatsapp } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -16,41 +16,79 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar Container */}
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center nav_bar" data-aos="fade-down" data-aos-duration="1000">
+      <div className="container flex items-center justify-between px-4 py-3 mx-auto nav_bar" data-aos="fade-down" data-aos-duration="1000">
         {/* Left Side - Logo */}
-        <div className="navbar flex items-center justify-between h-10">
-          <Link to="/" className="relative z-15 flex items-center">
+        <div className="flex items-center justify-between h-10 navbar">
+          <Link to="/" className="relative flex items-center z-15">
             <img
-              src="/assets/hero/ad2.png"
+              src="/assets/hero/web1.png"
               alt="Logo"
-              className="h-20 max-h-16 w-auto transition-transform duration-500 ease-in-out transform hover:scale-125"
+              className="w-auto h-20 transition-transform duration-500 ease-in-out transform max-h-9 hover:scale-125"
             />
           </Link>
         </div>
 
-        {/* Middle - WhatsApp Icon */}
+        {/* Middle - Enquiry Now Button */}
         <div className="flex justify-center flex-1">
-          <a
-            href="https://wa.me/9520243089?text=Hii%20I%20am%20interested%20I%20want%20to%20know%20about%20it%20more%20kindly%20help%20me"
-            className="text-green-500 flex items-center"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaWhatsapp className="w-8 h-8 hover:scale-110 transition-transform" />
-          </a>
-        </div>
+  <NavLink
+    to="/enquiry"
+    className="bg-blue-500 text-white text-sm px-3 py-1.5 rounded-full hover:bg-blue-600 transition duration-300 md:px-4 md:py-2"
+    onClick={handleLinkClick}
+  >
+    Enquiry Now
+  </NavLink>
+</div>
+
+
 
         {/* Right Side - Links for Desktop */}
-        <div className="hidden md:flex space-x-6 items-center">
-          <NavLink to="/vishwam" className="nav_items flex items-center" onClick={handleLinkClick}>
-            <div className="h-16 w-16 rounded-full overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-125">
-              <video src="/assets/vishwamitem/vishwamlogo.mp4" autoPlay loop muted className="h-full w-full object-cover"></video>
-            </div>
+        <div className="items-center hidden space-x-6 md:flex">
+          <NavLink
+            to="/vishwam"
+            className="flex items-center transition-transform duration-300 ease-in-out transform nav_items hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Vishwam
+          </NavLink>
+          <NavLink
+            to="/panchjanya"
+            className="flex items-center transition-transform duration-300 ease-in-out transform nav_items hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Panchjanya
+          </NavLink>
+          <NavLink
+            to="/komodki"
+            className="flex items-center transition-transform duration-300 ease-in-out transform nav_items hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Komodki
+          </NavLink>
+          <NavLink
+            to="/nandak"
+            className="flex items-center transition-transform duration-300 ease-in-out transform nav_items hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Nandak
+          </NavLink>
+          <NavLink
+            to="/sudharsan"
+            className="flex items-center transition-transform duration-300 ease-in-out transform nav_items hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Sudarshan
+          </NavLink>
+          <NavLink
+            to="/sarang"
+            className="flex items-center transition-transform duration-300 ease-in-out transform nav_items hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Sarang
           </NavLink>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
+        <div className="flex items-center md:hidden">
           <button
             onClick={toggleMenu}
             className="text-white focus:outline-none"
@@ -63,21 +101,48 @@ const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden bg-gray-900 text-white py-2 px-4 mt-2 z-20 transition-all duration-300 ease-in-out">
-          {/* <Link to="/vishwam" className="block py-2 text-white hover:bg-gray-700 transition-colors" onClick={handleLinkClick}>
-            <FaHome className="mr-2" />
+        <div className="z-20 px-4 py-2 mt-2 text-white transition-all duration-300 ease-in-out bg-gray-900 md:hidden">
+          <NavLink
+            to="/vishwam"
+            className="flex items-center py-2 transition-transform duration-300 ease-in-out transform hover:scale-110"
+            onClick={handleLinkClick}
+          >
             Vishwam
-          </Link> */}
-          {/* Add the Vishwam image in the mobile menu */}
-          <NavLink to="/vishwam" className="flex items-center py-2" onClick={handleLinkClick}>
-            <video
-              src="/assets/vishwamitem/vishwamlogo.mp4"
-              alt="Vishwam"
-              className="h-16 w-auto transition-transform duration-500 ease-in-out transform hover:scale-125 object-contain"
-              autoPlay
-              loop
-              muted
-            />
+          </NavLink>
+          <NavLink
+            to="/panchjanya"
+            className="flex items-center py-2 transition-transform duration-300 ease-in-out transform hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Panchjanya
+          </NavLink>
+          <NavLink
+            to="/nandak"
+            className="flex items-center py-2 transition-transform duration-300 ease-in-out transform hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Nandak
+          </NavLink>
+          <NavLink
+            to="/komodki"
+            className="flex items-center py-2 transition-transform duration-300 ease-in-out transform hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Komodki
+          </NavLink>
+          <NavLink
+            to="/sudharsan"
+            className="flex items-center py-2 transition-transform duration-300 ease-in-out transform hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Sudharshan
+          </NavLink>
+          <NavLink
+            to="/sarang"
+            className="flex items-center py-2 transition-transform duration-300 ease-in-out transform hover:scale-110"
+            onClick={handleLinkClick}
+          >
+            Sarang
           </NavLink>
         </div>
       )}

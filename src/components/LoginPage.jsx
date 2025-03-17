@@ -10,9 +10,9 @@ const LoginPage = ({ setIsAuthenticated }) => {
     e.preventDefault();
 
     // Add real authentication logic here
-    if (username === "user" && password === "password") {
+    if (username === "Addgod" && password === "BDO") {
       setIsAuthenticated(true); // Set authentication state to true
-      navigate("/customerform"); // Redirect to the customer form after login
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSdm7w5fltppbPFPN6qU5vnm1uMuFYZ-8WTz1fdv4qXwZYjy9Q/viewform", "_blank");
     } else {
       alert("Invalid credentials");
     }

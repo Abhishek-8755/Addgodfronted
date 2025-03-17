@@ -1,0 +1,54 @@
+.social-sidebar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it overlaps other content */
+}
+
+.social-sidebar a {
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-sidebar a:hover {
+    transform: scale(1.2);
+}
+
+/* WhatsApp */
+.social-sidebar a:nth-child(1) {
+    background-color: #25D366;
+}
+
+/* Instagram */
+.social-sidebar a:nth-child(2) {
+    background-color: #E4405F;
+}
+
+/* Facebook */
+.social-sidebar a:nth-child(3) {
+    background-color: #4267B2;
+}
+
+/* LinkedIn */
+.social-sidebar a:nth-child(4) {
+    background-color: #0077B5;
+}
+
+/* Call Now (Phone) */
+.social-sidebar a:nth-child(5) {
+    background-color: #22c8ff; /* Orange color for the call button */
+}
